@@ -1,0 +1,232 @@
+/********************************************
+*   Extra large desktops, 1200px to 1700px.
+*   Last Updated: 27-10-2024
+********************************************/
+
+@media (max-width: 1700px) {
+    header {
+        padding: 20px 8%;
+    }
+    header.sticky {
+        padding: 14px 8%;
+    }
+    section {
+        padding: 90px 8% 80px;
+    }
+    .footer {
+        padding: 18px 8%;
+    }
+    .logo {
+        font-size: 28px;
+    }
+}
+
+/********************************************
+*   Large desktops, 992px to 1199px
+*   Last Updated: 27-10-2024
+********************************************/
+
+@media (max-width: 1199px) {
+    :root {
+        --h1-font: 3.5rem;
+        --h2-font: 2.5rem;
+    }
+    .hero {
+        height: 90vh;
+        background-position: center;
+    }
+    .main-content p {
+        width: 90%;
+    }
+}
+
+/********************************************
+*   Medium tablets, 768px to 991px
+*   Last Updated: 27-10-2024
+********************************************/
+
+@media (max-width: 991px) {
+    header {
+        padding: 30px;
+    }
+    header.sticky {
+        padding: 24px;
+    }
+    section {
+        padding: 70px 5% 60px;
+    }
+    .about {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+    .about-img img {
+        max-width: 350px;
+        margin: 0 auto;
+    }
+    .services-content, .portfolio-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/********************************************
+*   Small devices, min 576px to 767px
+*   Last Updated: 27-10-2024
+********************************************/
+
+@media (max-width: 768px) {
+    :root {
+        --h1-font: 3rem;
+        --h2-font: 2.2rem;
+        --p-font: 15px;
+    }
+    #menu-icon {
+        display: block;
+    }
+    .navlist {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: rgba(27, 31, 36, 0.95);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        transition: all 0.50s ease;
+        z-index: 2000;
+        padding-top: 60px;
+        padding-left: 20px;
+    }
+    .navlist a {
+        display: block;
+        padding: 17px;
+        font-size: 18px;
+    }
+    .navlist.active {
+        right: 0;
+    }
+    .hero {
+        height: auto;
+        padding-top: 80px; /* Adjust for fixed header */
+    }
+    .main-content {
+        text-align: center;
+    }
+    .social {
+        justify-content: center;
+    }
+    .services-content, .portfolio-content {
+        grid-template-columns: 1fr;
+    }
+    .main-content h1 {
+        font-size: 2.5rem; /* Adjust heading size for mobile */
+    }
+    .main-content p {
+        font-size: 1rem; /* Adjust paragraph size for mobile */
+    }
+}
+
+/* Tablet and larger screens */
+@media (min-width: 768px) {
+    .main-btn {
+        flex-direction: row;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .btn, .btn2 {
+        width: auto;
+        min-width: 150px;
+        max-width: 200px;
+    }
+}
+
+/********************************************
+*   iPhone X and XR mobiles, 575px to 767px
+*   Last Updated: 27-10-2024
+********************************************/
+@media (max-width: 767px) {
+    .btn, .btn2 {
+        width: 80%; /* Reduce width on mobile */
+        max-width: 180px; /* Limit maximum width */
+        padding: 10px 15px; /* Slightly reduce padding */
+        font-size: 14px; /* Slightly reduce font size */
+    }
+}
+
+/********************************************
+*   Portrait sized mobiles, 380px to 575px
+*   Last Updated: 27-10-2024
+********************************************/
+
+@media (max-width: 575px) {
+    :root {
+        --h1-font: 2.7rem;
+        --h2-font: 2.5rem;
+        --p-font: 1.2em;
+    }
+    .about-img img {
+        max-width: 250px;
+    }
+    .box {
+        padding: 30px 25px 36px;
+    }
+    .contact-form form {
+        width: 100%;
+        padding: 0 15px;
+    }
+    .box h3 {
+        font-size: 32px;
+    }
+    .row h4{
+        font-size: 28px;
+    }
+    form .send-btn {
+        width: 100%;
+        padding: 8px 20px;
+    }
+    .footer-text {
+        font-size: 18px;
+}
+
+/********************************************
+*   Small phones, 320px to 380px
+*   Last Updated: 27-10-2024
+********************************************/
+
+@media (max-width: 379px) {
+    :root {
+        --h1-font: 2.4rem;
+        --h2-font: 2.3rem;
+        --p-font: 1rem;
+    }
+    .logo {
+        font-size: 24px;
+    }
+    .main-btn .btn {
+        padding: 9px 20px;
+        font-size: 14px;
+    }
+    .about-img img {
+        max-width: 200px;
+    }
+    form .send-btn {
+        width: 100%;
+        padding: 10px;
+    }
+}
+
+/********************************************
+*   Very small devices, less than 320px
+*   Last Updated: 27-10-2024
+********************************************/
+@media (max-width: 320px) {
+    .btn, .btn2 {
+        width: 90%; /* Further adjust for very small screens */
+        max-width: 160px;
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+}
