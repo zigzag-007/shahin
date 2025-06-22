@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zig Zag - Mohamed Shahin | Cyber Security Student</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' fill='%23ef4444' viewBox='0 0 24 24'><path d='M12 1l3 3h4v4l3 3-3 3v4h-4l-3 3-3-3H5v-4l-3-3 3-3V5h4l3-3z'></path></svg>">
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white font-poppins" style="margin:0; padding:0;">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out border-b border-transparent" id="header">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center gap-3 group cursor-pointer">
+                    <div class="relative">
+                        <i data-lucide="shield" class="h-8 w-8 text-red-500 group-hover:text-red-400 transition-colors duration-300"></i>
+                        <i data-lucide="gamepad-2" class="h-4 w-4 text-red-400 absolute -top-1 -right-1 hover:scale-110 transition-transform duration-200"></i>
+                    </div>
+                    <span class="text-xl font-bold text-white group-hover:text-red-400 transition-colors duration-300">Zig Zag</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-gray-300 hover:text-red-400 font-semibold text-lg transition-colors duration-200">Home</a>
+                    <a href="#about" class="nav-link text-gray-300 hover:text-red-400 font-semibold text-lg transition-colors duration-200">About</a>
+                    <a href="#skills" class="nav-link text-gray-300 hover:text-red-400 font-semibold text-lg transition-colors duration-200">Skills</a>
+                    <a href="#projects" class="nav-link text-gray-300 hover:text-red-400 font-semibold text-lg transition-colors duration-200">Projects</a>
+                    <a href="#contact" class="nav-link text-gray-300 hover:text-red-400 font-semibold text-lg transition-colors duration-200">Contact</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-white hover:text-red-400 hover:bg-red-500/10 p-2 rounded-lg transition-all duration-200" id="mobile-menu-btn" aria-label="Toggle mobile menu">
+                    <i data-lucide="menu" class="w-6 h-6" id="menu-icon"></i>
+                    <i data-lucide="x" class="w-6 h-6 hidden" id="close-icon"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="md:hidden fixed inset-0 z-[9999] opacity-0 pointer-events-none transition-all duration-300" id="mobile-menu">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-slate-900/80 backdrop-blur-md" id="mobile-backdrop"></div>
+        <!-- Menu Content - Slides from left -->
+        <div class="relative bg-slate-900/95 backdrop-blur-md h-full w-80 max-w-[80vw] transform -translate-x-full transition-transform duration-300 ease-out shadow-2xl border-r border-red-500/20" id="mobile-menu-content">
+            <!-- Menu Header -->
+            <div class="p-6 border-b border-slate-700">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="relative">
+                            <i data-lucide="shield" class="h-6 w-6 text-red-500"></i>
+                            <i data-lucide="gamepad-2" class="h-3 w-3 text-red-400 absolute -top-1 -right-1"></i>
+                        </div>
+                        <span class="text-lg font-bold text-white">Zig Zag</span>
+                    </div>
+                    <button class="text-gray-400 hover:text-red-400 p-2 rounded-lg hover:bg-red-500/10 transition-all duration-200" id="mobile-close-btn" aria-label="Close mobile menu">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Navigation Links -->
+            <div class="p-6 space-y-2">
+                <a href="#home" class="nav-link-mobile flex items-center gap-3 text-gray-300 hover:text-red-400 py-3 px-4 rounded-lg hover:bg-red-500/10 transition-all duration-200">
+                    <i data-lucide="home" class="w-5 h-5"></i>
+                    <span class="font-medium">Home</span>
+                </a>
+                <a href="#about" class="nav-link-mobile flex items-center gap-3 text-gray-300 hover:text-red-400 py-3 px-4 rounded-lg hover:bg-red-500/10 transition-all duration-200">
+                    <i data-lucide="user" class="w-5 h-5"></i>
+                    <span class="font-medium">About</span>
+                </a>
+                <a href="#skills" class="nav-link-mobile flex items-center gap-3 text-gray-300 hover:text-red-400 py-3 px-4 rounded-lg hover:bg-red-500/10 transition-all duration-200">
+                    <i data-lucide="shield" class="w-5 h-5"></i>
+                    <span class="font-medium">Skills</span>
+                </a>
+                <a href="#projects" class="nav-link-mobile flex items-center gap-3 text-gray-300 hover:text-red-400 py-3 px-4 rounded-lg hover:bg-red-500/10 transition-all duration-200">
+                    <i data-lucide="code" class="w-5 h-5"></i>
+                    <span class="font-medium">Projects</span>
+                </a>
+                <a href="#contact" class="nav-link-mobile flex items-center gap-3 text-gray-300 hover:text-red-400 py-3 px-4 rounded-lg hover:bg-red-500/10 transition-all duration-200">
+                    <i data-lucide="mail" class="w-5 h-5"></i>
+                    <span class="font-medium">Contact</span>
+                </a>
+            </div>
+            
+            <!-- Social Links in Mobile Menu -->
+            <div class="absolute bottom-6 left-6 right-6">
+                <div class="border-t border-slate-700 pt-6">
+                    <p class="text-gray-400 text-sm mb-4">Follow me on:</p>
+                                            <div class="flex gap-3">
+                        <a href="https://web.facebook.com/MaesterShahin" target="_blank" rel="noopener" class="p-2 rounded-lg bg-slate-800 hover:bg-blue-600 text-gray-400 hover:text-white transition-all duration-200">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://t.me/dark_net_studio" target="_blank" rel="noopener" class="p-2 rounded-lg bg-slate-800 hover:bg-blue-500 text-gray-400 hover:text-white transition-all duration-200">
+                            <i data-lucide="send" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://github.com/zigzag-007" target="_blank" rel="noopener" class="p-2 rounded-lg bg-slate-800 hover:bg-gray-600 text-gray-400 hover:text-white transition-all duration-200">
+                            <i data-lucide="github" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="fixed bottom-6 right-6 z-40 bg-red-500 hover:bg-red-600 text-white p-3 rounded-full shadow-lg transform scale-0 transition-all duration-300 hover:scale-110" aria-label="Scroll to top">
+        <i data-lucide="arrow-up" class="w-6 h-6"></i>
+    </button>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden bg-slate-800/20">
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 -z-10">
+            <div class="absolute top-20 right-20 w-80 h-80 bg-red-500/10 rounded-full blur-3xl animate-pulse"></div>
+            <div class="absolute bottom-20 left-20 w-80 h-80 bg-red-500/5 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-red-500/5 to-transparent rounded-full blur-3xl animate-spin" style="animation-duration: 20s;"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 text-center relative max-w-4xl pt-20">
+            <!-- Profile Avatar -->
+            <div class="relative w-32 h-32 sm:w-36 sm:h-36 mx-auto mb-6">
+                <div class="w-full h-full rounded-full bg-gradient-to-br from-red-500 to-red-600 p-1">
+                    <div class="w-full h-full rounded-full bg-slate-800 flex items-center justify-center">
+                        <i data-lucide="shield" class="h-14 w-14 sm:h-16 sm:w-16 text-red-400"></i>
+                    </div>
+                </div>
+                <div class="absolute -top-2 -right-2">
+                    <i data-lucide="gamepad-2" class="h-7 w-7 text-red-300 animate-bounce"></i>
+                </div>
+                <div class="absolute -bottom-2 -right-2 bg-red-500 rounded-full p-2 animate-bounce" style="animation-delay: 0.5s;">
+                    <i data-lucide="trophy" class="h-4 w-4 text-white"></i>
+                </div>
+            </div>
+            
+            <!-- Main Content -->
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
+                Hi, I'm <span class="bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">Mohamed Shahin</span>
+            </h1>
+            
+            <p class="text-lg sm:text-xl lg:text-2xl text-gray-300 font-medium mb-6">
+                Cyber Security Student & Gaming Enthusiast
+            </p>
+            
+            <p class="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed mb-8">
+                Pursuing Diploma in Bachelor of Cyber Security at Curtin University. 
+                Passionate about digital security, cricket, and coding in PowerShell, Batch, Java, and C. 
+                Ready to secure the digital world! 🛡️
+            </p>
+            
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8 px-4 sm:px-0">
+                <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-xl transition-all duration-200 hover:scale-105 text-center w-full sm:w-auto min-w-[200px]">
+                    Get In Touch
+                    <i data-lucide="external-link" class="w-5 h-5 ml-2"></i>
+                </a>
+                <a href="https://t.me/dark_net_studio" target="_blank" rel="noopener" class="inline-flex items-center justify-center px-8 py-4 border-2 border-red-500 text-red-400 hover:bg-red-500 hover:text-white font-semibold rounded-xl transition-all duration-200 text-center w-full sm:w-auto min-w-[200px]">
+                    Message Me
+                    <i data-lucide="message-circle" class="w-5 h-5 ml-2"></i>
+                </a>
+            </div>
+            
+            <!-- Social Media Links -->
+            <div class="flex gap-4 justify-center mb-8">
+                <a href="https://web.facebook.com/MaesterShahin" target="_blank" rel="noopener" class="p-3 rounded-full bg-slate-800 text-gray-400 hover:text-red-400 transition-all duration-300 hover:shadow-[0_0_20px_rgba(239,68,68,0.6)]">
+                    <i data-lucide="facebook" class="w-6 h-6"></i>
+                </a>
+                <a href="https://t.me/dark_net_studio" target="_blank" rel="noopener" class="p-3 rounded-full bg-slate-800 text-gray-400 hover:text-red-400 transition-all duration-300 hover:shadow-[0_0_20px_rgba(239,68,68,0.6)]">
+                    <i data-lucide="send" class="w-6 h-6"></i>
+                </a>
+                <a href="https://github.com/zigzag-007" target="_blank" rel="noopener" class="p-3 rounded-full bg-slate-800 text-gray-400 hover:text-red-400 transition-all duration-300 hover:shadow-[0_0_20px_rgba(239,68,68,0.6)]">
+                    <i data-lucide="github" class="w-6 h-6"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 relative bg-slate-800/20">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <h2 class="text-4xl sm:text-5xl font-bold text-white mb-4">
+                    About <span class="text-red-400">Me</span>
+                </h2>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+                    Get to know more about my journey, interests, and what drives me forward
+                </p>
+            </div>
+            
+            <!-- Main Content Layout -->
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Left Column - Main Information -->
+                <div class="space-y-6">
+                    
+                    <!-- Education & Background Block -->
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <i data-lucide="graduation-cap" class="h-8 w-8 text-red-400"></i>
+                            <h3 class="text-2xl font-bold text-white">Education & Background</h3>
+                        </div>
+                        <p class="text-gray-300 text-lg leading-relaxed">
+                            I'm Mohamed Shahin, currently pursuing my <span class="text-red-400 font-semibold">Diploma in Bachelor of Cyber Security</span> at <span class="text-red-400 font-semibold">Curtin University</span>. I went to Belvoir College International, where I built a strong foundation in software. Growing up, I part-timed at an IT store, gaining hands-on experience in coding and simplifying daily work through automation.
+                        </p>
+                    </div>
+                    
+                    <!-- My Mission Block -->
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <i data-lucide="target" class="h-8 w-8 text-red-400"></i>
+                            <h3 class="text-2xl font-bold text-white">My Mission</h3>
+                        </div>
+                        <p class="text-gray-300 text-lg leading-relaxed">
+                            To become a skilled cybersecurity professional who can protect organizations from digital threats. I'm passionate about making complex tasks easier through automation and have many years of experience in software reverse engineering, PowerShell, Batch programming, and software automation. I believe in continuous learning and staying updated with the latest security trends.
+                        </p>
+                    </div>
+                    
+                    <!-- Beyond Studies Block -->
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <i data-lucide="heart" class="h-8 w-8 text-red-400"></i>
+                            <h3 class="text-2xl font-bold text-white">Beyond Studies</h3>
+                        </div>
+                        <p class="text-gray-300 text-lg leading-relaxed">
+                            When I'm not studying or working on coding projects, you'll find me playing cricket, swimming, or editing photos. I love photo editing and have been passionate about it since childhood. In my spare time, I work on part-time projects from GitHub to get more creative. These activities help me stay balanced and develop creativity alongside technical skills.
+                        </p>
+                    </div>
+                    
+                </div>
+                
+                <!-- Right Column - Interest Cards -->
+                <div class="space-y-6">
+                    
+                    <!-- Interest Card 1 - Cyber Security -->
+                    <div class="bg-slate-800/50 border border-slate-700 hover:border-red-500/50 transition-all duration-300 hover:scale-105 rounded-lg p-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="p-3 rounded-lg bg-red-500/10 border border-red-500/20">
+                                <i data-lucide="shield" class="h-6 w-6 text-red-400"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="text-xl font-semibold text-white mb-2">Cyber Security</h4>
+                                <p class="text-gray-400 leading-relaxed">Passionate about protecting digital assets and learning ethical hacking techniques.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Interest Card 2 - Cricket -->
+                    <div class="bg-slate-800/50 border border-slate-700 hover:border-red-500/50 transition-all duration-300 hover:scale-105 rounded-lg p-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="p-3 rounded-lg bg-red-500/10 border border-red-500/20">
+                                <i data-lucide="trophy" class="h-6 w-6 text-red-400"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="text-xl font-semibold text-white mb-2">Cricket</h4>
+                                <p class="text-gray-400 leading-relaxed">Love playing cricket and following international matches. Team spirit and strategy!</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Interest Card 3 - Coding -->
+                    <div class="bg-slate-800/50 border border-slate-700 hover:border-red-500/50 transition-all duration-300 hover:scale-105 rounded-lg p-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="p-3 rounded-lg bg-red-500/10 border border-red-500/20">
+                                <i data-lucide="code" class="h-6 w-6 text-red-400"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="text-xl font-semibold text-white mb-2">Coding</h4>
+                                <p class="text-gray-400 leading-relaxed">Love coding in PowerShell, Batch, Java, and C. Automation and efficiency are key!</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Interest Card 4 - Diagnostics and Repair -->
+                    <div class="bg-slate-800/50 border border-slate-700 hover:border-red-500/50 transition-all duration-300 hover:scale-105 rounded-lg p-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="p-3 rounded-lg bg-red-500/10 border border-red-500/20">
+                                <i data-lucide="wrench" class="h-6 w-6 text-red-400"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="text-xl font-semibold text-white mb-2">Diagnostics & Repair</h4>
+                                <p class="text-gray-400 leading-relaxed">Specializing in Windows 10/11 diagnostics, boot issues, and OS optimization. Restoring systems to peak performance!</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+            <!-- Stats Section -->
+            <div class="mt-16">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    
+                    <!-- Stat Card 1 -->
+                    <div class="text-center p-6 rounded-lg bg-slate-800/30 border border-slate-700">
+                        <div class="text-3xl font-bold text-red-400 mb-2">5+</div>
+                        <div class="text-gray-400 font-medium">Years of Study</div>
+                    </div>
+                    
+                    <!-- Stat Card 2 -->
+                    <div class="text-center p-6 rounded-lg bg-slate-800/30 border border-slate-700">
+                        <div class="text-3xl font-bold text-red-400 mb-2">28+</div>
+                        <div class="text-gray-400 font-medium">Security Projects</div>
+                    </div>
+                    
+                    <!-- Stat Card 3 -->
+                    <div class="text-center p-6 rounded-lg bg-slate-800/30 border border-slate-700">
+                        <div class="text-3xl font-bold text-red-400 mb-2">500+</div>
+                        <div class="text-gray-400 font-medium">Coding Hours</div>
+                    </div>
+                    
+                    <!-- Stat Card 4 -->
+                    <div class="text-center p-6 rounded-lg bg-slate-800/30 border border-slate-700">
+                        <div class="text-3xl font-bold text-red-400 mb-2">25+</div>
+                        <div class="text-gray-400 font-medium">Successful Projects</div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-slate-800/20">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <h2 class="text-4xl sm:text-5xl font-bold text-white mb-4">
+                    My <span class="text-red-400">Skills</span>
+                </h2>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+                    A combination of technical expertise and personal skills developed through studies and hobbies
+                </p>
+            </div>
+            
+            <!-- Main Content Layout -->
+            <div class="grid lg:grid-cols-2 gap-12">
+                
+                <!-- Left Column - Technical Skills -->
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-8 flex items-center">
+                        <i data-lucide="shield" class="h-6 w-6 text-red-400 mr-3"></i>
+                        Technical Skills
+                    </h3>
+                    
+                    <div class="space-y-6">
+                        
+                        <!-- Network Security -->
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <i data-lucide="network" class="h-5 w-5 text-red-400"></i>
+                                    <span class="text-white font-medium">Network Security</span>
+                                </div>
+                                <span class="text-red-400 font-semibold">85%</span>
+                            </div>
+                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-red-500 rounded-full transition-all duration-1000 ease-out" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Web Designing -->
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <i data-lucide="palette" class="h-5 w-5 text-red-400"></i>
+                                    <span class="text-white font-medium">Web Designing</span>
+                                </div>
+                                <span class="text-red-400 font-semibold">70%</span>
+                            </div>
+                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-red-500 rounded-full transition-all duration-1000 ease-out" style="width: 70%"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Python Programming -->
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <i data-lucide="code" class="h-5 w-5 text-red-400"></i>
+                                    <span class="text-white font-medium">Python Programming</span>
+                                </div>
+                                <span class="text-red-400 font-semibold">65%</span>
+                            </div>
+                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-red-500 rounded-full transition-all duration-1000 ease-out" style="width: 65%"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Java Programming -->
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <i data-lucide="coffee" class="h-5 w-5 text-red-400"></i>
+                                    <span class="text-white font-medium">Java Programming</span>
+                                </div>
+                                <span class="text-red-400 font-semibold">65%</span>
+                            </div>
+                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-red-500 rounded-full transition-all duration-1000 ease-out" style="width: 65%"></div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <!-- Right Column - Personal Skills -->
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-8 flex items-center">
+                        <i data-lucide="trophy" class="h-6 w-6 text-red-400 mr-3"></i>
+                        Personal Skills
+                    </h3>
+                    
+                    <div class="space-y-6">
+                        
+                        <!-- Strategic Thinking -->
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <i data-lucide="target" class="h-5 w-5 text-red-400"></i>
+                                    <span class="text-white font-medium">Strategic Thinking</span>
+                                </div>
+                                <span class="text-red-400 font-semibold">90%</span>
+                            </div>
+                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-red-500 rounded-full transition-all duration-1000 ease-out" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Team Collaboration -->
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <i data-lucide="users" class="h-5 w-5 text-red-400"></i>
+                                    <span class="text-white font-medium">Team Collaboration</span>
+                                </div>
+                                <span class="text-red-400 font-semibold">85%</span>
+                            </div>
+                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-red-500 rounded-full transition-all duration-1000 ease-out" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Problem Solving -->
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <i data-lucide="puzzle" class="h-5 w-5 text-red-400"></i>
+                                    <span class="text-white font-medium">Problem Solving</span>
+                                </div>
+                                <span class="text-red-400 font-semibold">88%</span>
+                            </div>
+                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-red-500 rounded-full transition-all duration-1000 ease-out" style="width: 88%"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Quick Decision Making -->
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <i data-lucide="zap" class="h-5 w-5 text-red-400"></i>
+                                    <span class="text-white font-medium">Quick Decision Making</span>
+                                </div>
+                                <span class="text-red-400 font-semibold">82%</span>
+                            </div>
+                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-red-500 rounded-full transition-all duration-1000 ease-out" style="width: 82%"></div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+            </div>
+            
+            <!-- Certifications Section -->
+            <div class="mt-16">
+                <h3 class="text-2xl font-bold text-white mb-8 text-center">Certifications & Learning Path</h3>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <!-- Certification Card 1 -->
+                    <div class="bg-slate-800/50 border border-slate-700 hover:border-red-500/50 transition-all duration-300 hover:scale-105 rounded-lg p-6 text-center">
+                        <div class="w-12 h-12 bg-red-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="git-branch" class="h-6 w-6 text-red-400"></i>
+                        </div>
+                        <h4 class="text-white font-medium">Complete Git Specialization</h4>
+                    </div>
+                    
+                    <!-- Certification Card 2 -->
+                    <div class="bg-slate-800/50 border border-slate-700 hover:border-red-500/50 transition-all duration-300 hover:scale-105 rounded-lg p-6 text-center">
+                        <div class="w-12 h-12 bg-red-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="terminal" class="h-6 w-6 text-red-400"></i>
+                        </div>
+                        <h4 class="text-white font-medium">Automating Administration with PowerShell (AZ‑040)</h4>
+                    </div>
+                    
+                    <!-- Certification Card 3 -->
+                    <div class="bg-slate-800/50 border border-slate-700 hover:border-red-500/50 transition-all duration-300 hover:scale-105 rounded-lg p-6 text-center">
+                        <div class="w-12 h-12 bg-red-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="search" class="h-6 w-6 text-red-400"></i>
+                        </div>
+                        <h4 class="text-white font-medium">Reverse Engineering, Memory Hacking & Bug Bounty Bootcamp</h4>
+                    </div>
+                    
+                    <!-- Certification Card 4 -->
+                    <div class="bg-slate-800/50 border border-slate-700 hover:border-red-500/50 transition-all duration-300 hover:scale-105 rounded-lg p-6 text-center">
+                        <div class="w-12 h-12 bg-red-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="shield" class="h-6 w-6 text-red-400"></i>
+                        </div>
+                        <h4 class="text-white font-medium">Reverse Engineering: Software Protection</h4>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <h2 class="text-4xl sm:text-5xl font-bold text-white mb-4">
+                    My <span class="text-red-400">Projects</span>
+                </h2>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+                    Cybersecurity projects and tools I've been working on during my studies
+                </p>
+            </div>
+            
+            <!-- Projects Grid -->
+            <div class="grid md:grid-cols-2 gap-8">
+                
+                <!-- Project 1 - MarkTide Viewer -->
+                <div class="bg-slate-800/50 border border-slate-700 hover:border-red-500/50 transition-all duration-300 hover:scale-105 group rounded-lg p-6">
+                    <!-- Card Header -->
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="p-2 rounded-lg bg-red-500/10 border border-red-500/20 group-hover:bg-red-500/20 transition-colors">
+                                <i data-lucide="file-text" class="h-6 w-6 text-red-400"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-white text-xl font-semibold">MarkTide Viewer</h3>
+                                <span class="mt-2 inline-block px-3 py-1 text-xs font-medium rounded-full border bg-green-500/10 text-green-400 border-green-500/20">
+                                    Completed
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Card Content -->
+                    <div class="space-y-4">
+                        <p class="text-gray-400 leading-relaxed">
+                            MarkTide-Viewer is a lightweight, browser-based tool for rendering markdown files with a clean, customizable interface.
+                        </p>
+                        
+                        <!-- Technology Tags -->
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 text-xs border border-slate-600 text-gray-300 rounded">HTML</span>
+                            <span class="px-2 py-1 text-xs border border-slate-600 text-gray-300 rounded">JavaScript</span>
+                            <span class="px-2 py-1 text-xs border border-slate-600 text-gray-300 rounded">CSS</span>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="flex space-x-3 pt-4">
+                            <a href="https://github.com/zigzag-007/MarkTide-Viewer" target="_blank" rel="noopener" class="inline-flex items-center px-4 py-2 text-sm border border-red-500 text-red-400 hover:bg-red-500 hover:text-white rounded-lg transition-colors">
+                                <i data-lucide="github" class="h-4 w-4 mr-2"></i>
+                                Code
+                            </a>
+                            <a href="https://marktide.netlify.app/" target="_blank" rel="noopener" class="inline-flex items-center px-4 py-2 text-sm bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors">
+                                <i data-lucide="external-link" class="h-4 w-4 mr-2"></i>
+                                Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 - Mi Fix Repair Store -->
+                <div class="bg-slate-800/50 border border-slate-700 hover:border-red-500/50 transition-all duration-300 hover:scale-105 group rounded-lg p-6">
+                    <!-- Card Header -->
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="p-2 rounded-lg bg-red-500/10 border border-red-500/20 group-hover:bg-red-500/20 transition-colors">
+                                <i data-lucide="smartphone" class="h-6 w-6 text-red-400"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-white text-xl font-semibold">Mi Fix Repair Store</h3>
+                                <span class="mt-2 inline-block px-3 py-1 text-xs font-medium rounded-full border bg-green-500/10 text-green-400 border-green-500/20">
+                                    Completed
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Card Content -->
+                    <div class="space-y-4">
+                        <p class="text-gray-400 leading-relaxed">
+                            Mi Fix is a trusted mobile repair expert in Weligama, Sri Lanka 🇱🇰, with over 500+ devices fixed and a 98% success rate since 2020 ⚡.
+                        </p>
+                        
+                        <!-- Technology Tags -->
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 text-xs border border-slate-600 text-gray-300 rounded">HTML</span>
+                            <span class="px-2 py-1 text-xs border border-slate-600 text-gray-300 rounded">JavaScript</span>
+                            <span class="px-2 py-1 text-xs border border-slate-600 text-gray-300 rounded">Tailwind CSS</span>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="flex space-x-3 pt-4">
+                            <a href="https://github.com/zigzag-007/MiFix" target="_blank" rel="noopener" class="inline-flex items-center px-4 py-2 text-sm border border-red-500 text-red-400 hover:bg-red-500 hover:text-white rounded-lg transition-colors">
+                                <i data-lucide="github" class="h-4 w-4 mr-2"></i>
+                                Code
+                            </a>
+                            <a href="https://mifix.netlify.app/" target="_blank" rel="noopener" class="inline-flex items-center px-4 py-2 text-sm bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors">
+                                <i data-lucide="external-link" class="h-4 w-4 mr-2"></i>
+                                Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 - MessageBox Utility -->
+                <div class="bg-slate-800/50 border border-slate-700 hover:border-red-500/50 transition-all duration-300 hover:scale-105 group rounded-lg p-6">
+                    <!-- Card Header -->
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="p-2 rounded-lg bg-red-500/10 border border-red-500/20 group-hover:bg-red-500/20 transition-colors">
+                                <i data-lucide="message-square" class="h-6 w-6 text-red-400"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-white text-xl font-semibold">MessageBox Utility</h3>
+                                <span class="mt-2 inline-block px-3 py-1 text-xs font-medium rounded-full border bg-yellow-500/10 text-yellow-400 border-yellow-500/20">
+                                    Ongoing
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Card Content -->
+                    <div class="space-y-4">
+                        <p class="text-gray-400 leading-relaxed">
+                            🛠️ Tiny CLI tool to show Windows message boxes with custom buttons, icons & timeout ⏳ — perfect for automation, sysadmin tasks & batch scripts ⚙️📜
+                        </p>
+                        
+                        <!-- Technology Tags -->
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 text-xs border border-slate-600 text-gray-300 rounded">C Code</span>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="flex space-x-3 pt-4">
+                            <a href="https://github.com/zigzag-007/Windows-MessageBox-Utility" target="_blank" rel="noopener" class="inline-flex items-center px-4 py-2 text-sm border border-red-500 text-red-400 hover:bg-red-500 hover:text-white rounded-lg transition-colors">
+                                <i data-lucide="github" class="h-4 w-4 mr-2"></i>
+                                Code
+                            </a>
+                            <button class="inline-flex items-center px-4 py-2 text-sm bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors opacity-50 cursor-not-allowed">
+                                <i data-lucide="external-link" class="h-4 w-4 mr-2"></i>
+                                Demo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 4 - AI Security Assistant -->
+                <div class="bg-slate-800/50 border border-slate-700 hover:border-red-500/50 transition-all duration-300 hover:scale-105 group rounded-lg p-6">
+                    <!-- Card Header -->
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="p-2 rounded-lg bg-red-500/10 border border-red-500/20 group-hover:bg-red-500/20 transition-colors">
+                                <i data-lucide="bot" class="h-6 w-6 text-red-400"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-white text-xl font-semibold">AI Security Assistant</h3>
+                                <span class="mt-2 inline-block px-3 py-1 text-xs font-medium rounded-full border bg-blue-500/10 text-blue-400 border-blue-500/20">
+                                    Future Work
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Card Content -->
+                    <div class="space-y-4">
+                        <p class="text-gray-400 leading-relaxed">
+                            AI-powered security assistant that analyzes threats, provides real-time vulnerability assessments, and automates security best practices for organizations.
+                        </p>
+                        
+                        <!-- Technology Tags -->
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 text-xs border border-slate-600 text-gray-300 rounded">Python</span>
+                            <span class="px-2 py-1 text-xs border border-slate-600 text-gray-300 rounded">Machine Learning</span>
+                            <span class="px-2 py-1 text-xs border border-slate-600 text-gray-300 rounded">NLP</span>
+                            <span class="px-2 py-1 text-xs border border-slate-600 text-gray-300 rounded">API</span>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="flex space-x-3 pt-4">
+                            <button class="inline-flex items-center px-4 py-2 text-sm border border-red-500 text-red-400 hover:bg-red-500 hover:text-white rounded-lg transition-colors opacity-50 cursor-not-allowed">
+                                <i data-lucide="github" class="h-4 w-4 mr-2"></i>
+                                Code
+                            </button>
+                            <button class="inline-flex items-center px-4 py-2 text-sm bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors opacity-50 cursor-not-allowed">
+                                <i data-lucide="external-link" class="h-4 w-4 mr-2"></i>
+                                Demo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <!-- Call to Action Section -->
+            <div class="text-center mt-16">
+                <p class="text-gray-400 mb-6">Want to see more of my work or collaborate on a project?</p>
+                <a href="#contact" class="inline-flex items-center px-6 py-3 text-lg bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors">
+                    Let's Connect
+                    <i data-lucide="external-link" class="ml-2 h-5 w-5"></i>
+                </a>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-slate-800/20">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <h2 class="text-4xl sm:text-5xl font-bold text-white mb-4">
+                    Get In <span class="text-red-400">Touch</span>
+                </h2>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+                    Ready to connect? Whether it's about cybersecurity, gaming, or just a friendly chat!
+                </p>
+            </div>
+            
+            <!-- Main Content Layout -->
+            <div class="grid lg:grid-cols-2 gap-12">
+                
+                <!-- Left Column - Contact Information -->
+                <div>
+                    <!-- Introduction Section -->
+                    <h3 class="text-2xl font-bold text-white mb-6">Let's Connect!</h3>
+                    <p class="text-gray-400 text-lg leading-relaxed mb-8">
+                        I'm always excited to meet new people, discuss cybersecurity topics, share gaming experiences, or talk about cricket! Feel free to reach out through any of these channels.
+                    </p>
+                    
+                    <!-- Contact Methods -->
+                    <div class="space-y-6 mb-8">
+                        
+                        <!-- Email Contact -->
+                        <div class="flex items-center space-x-4">
+                            <div class="p-3 rounded-lg bg-red-500/10 border border-red-500/20">
+                                <i data-lucide="mail" class="h-6 w-6 text-red-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold">Email</h4>
+                                <p class="text-gray-400">shafishahin786@proton.me</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Location Contact -->
+                        <div class="flex items-center space-x-4">
+                            <div class="p-3 rounded-lg bg-red-500/10 border border-red-500/20">
+                                <i data-lucide="map-pin" class="h-6 w-6 text-red-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold">Location</h4>
+                                <p class="text-gray-400">Sri Lanka</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Response Time -->
+                        <div class="flex items-center space-x-4">
+                            <div class="p-3 rounded-lg bg-red-500/10 border border-red-500/20">
+                                <i data-lucide="message-circle" class="h-6 w-6 text-red-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold">Response Time</h4>
+                                <p class="text-gray-400">Active in Telegram</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    <!-- Social Media Section -->
+                    <div>
+                        <h4 class="text-white font-semibold mb-4">Follow Me</h4>
+                        <div class="flex space-x-4">
+                            <!-- Facebook Link -->
+                            <a href="https://web.facebook.com/MaesterShahin" target="_blank" rel="noopener" class="p-3 rounded-lg bg-slate-800 text-gray-400 hover:text-red-400 transition-all duration-300 hover:shadow-[0_0_20px_rgba(239,68,68,0.6)]">
+                                <i data-lucide="facebook" class="h-6 w-6"></i>
+                            </a>
+                            <!-- Telegram Link -->
+                            <a href="https://t.me/dark_net_studio" target="_blank" rel="noopener" class="p-3 rounded-lg bg-slate-800 text-gray-400 hover:text-red-400 transition-all duration-300 hover:shadow-[0_0_20px_rgba(239,68,68,0.6)]">
+                                <i data-lucide="send" class="h-6 w-6"></i>
+                            </a>
+                            <!-- GitHub Link -->
+                            <a href="https://github.com/zigzag-007" target="_blank" rel="noopener" class="p-3 rounded-lg bg-slate-800 text-gray-400 hover:text-red-400 transition-all duration-300 hover:shadow-[0_0_20px_rgba(239,68,68,0.6)]">
+                                <i data-lucide="github" class="h-6 w-6"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <!-- Right Column - Contact Form -->
+                <div class="bg-slate-800/50 border border-slate-700 rounded-lg p-6">
+                    <!-- Form Header -->
+                    <h3 class="text-white text-2xl font-bold mb-6">Send Me a Message</h3>
+                    
+                    <!-- Contact Form -->
+                    <form class="space-y-6" id="contact-form" action="https://formspree.io/f/xgvezqaw" method="POST">
+                        
+                        <!-- Name Fields Row -->
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <!-- First Name Field -->
+                            <div>
+                                <label class="text-white font-medium mb-2 block">First Name</label>
+                                <input type="text" name="first_name" class="w-full px-4 py-3 bg-slate-700 border border-slate-600 text-white placeholder:text-gray-400 focus:border-red-500 focus:ring-1 focus:ring-red-500 rounded-lg" placeholder="Your first name" required>
+                            </div>
+                            <!-- Last Name Field -->
+                            <div>
+                                <label class="text-white font-medium mb-2 block">Last Name</label>
+                                <input type="text" name="last_name" class="w-full px-4 py-3 bg-slate-700 border border-slate-600 text-white placeholder:text-gray-400 focus:border-red-500 focus:ring-1 focus:ring-red-500 rounded-lg" placeholder="Your last name" required>
+                            </div>
+                        </div>
+                        
+                        <!-- Email Field -->
+                        <div>
+                            <label class="text-white font-medium mb-2 block">Email</label>
+                            <input type="email" name="email" class="w-full px-4 py-3 bg-slate-700 border border-slate-600 text-white placeholder:text-gray-400 focus:border-red-500 focus:ring-1 focus:ring-red-500 rounded-lg" placeholder="your.email@example.com" required>
+                        </div>
+                        
+                        <!-- Subject Field -->
+                        <div>
+                            <label class="text-white font-medium mb-2 block">Subject</label>
+                            <input type="text" name="subject" class="w-full px-4 py-3 bg-slate-700 border border-slate-600 text-white placeholder:text-gray-400 focus:border-red-500 focus:ring-1 focus:ring-red-500 rounded-lg" placeholder="What's this about?" required>
+                        </div>
+                        
+                        <!-- Message Field -->
+                        <div>
+                            <label class="text-white font-medium mb-2 block">Message</label>
+                            <textarea rows="5" name="message" class="w-full px-4 py-3 bg-slate-700 border border-slate-600 text-white placeholder:text-gray-400 focus:border-red-500 focus:ring-1 focus:ring-red-500 rounded-lg resize-none" placeholder="Tell me more about what you'd like to discuss..." required></textarea>
+                        </div>
+                        
+                        <!-- Submit Button -->
+                        <button type="submit" class="w-full bg-red-500 hover:bg-red-600 text-white py-3 text-lg font-semibold rounded-lg transition-colors group inline-flex items-center justify-center">
+                            Send Message
+                            <i data-lucide="send" class="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                        
+                    </form>
+                </div>
+                
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            
+            <!-- Main Footer Content -->
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <!-- Left Column - Brand Section -->
+                <div class="space-y-4">
+                    <!-- Brand Logo & Name -->
+                    <a href="#home" class="group inline-flex items-center space-x-2">
+                        <div class="relative">
+                            <!-- Primary Shield Icon -->
+                            <i data-lucide="shield" class="h-8 w-8 text-red-500 group-hover:text-red-400 transition-colors"></i>
+                            <!-- Overlay Gamepad Icon -->
+                            <i data-lucide="gamepad-2" class="h-4 w-4 text-red-400 absolute -top-1 -right-1 group-hover:scale-110 transition-transform"></i>
+                        </div>
+                        <span class="text-xl font-bold text-white group-hover:text-red-400 transition-colors">Zig Zag</span>
+                    </a>
+                    
+                    <!-- Brand Description -->
+                    <p class="text-gray-400 leading-relaxed">
+                        Bachelor of Cyber Security student passionate about protecting the digital world while enjoying cricket and coding.
+                    </p>
+                </div>
+                
+                <!-- Middle Column - Quick Links -->
+                <div class="space-y-4">
+                    <!-- Section Title -->
+                    <h4 class="text-white font-semibold text-lg">Quick Links</h4>
+                    
+                    <!-- Navigation Links -->
+                    <div class="space-y-2">
+                        <a href="#home" class="block text-gray-400 hover:text-red-400 transition-colors">Home</a>
+                        <a href="#about" class="block text-gray-400 hover:text-red-400 transition-colors">About</a>
+                        <a href="#skills" class="block text-gray-400 hover:text-red-400 transition-colors">Skills</a>
+                        <a href="#projects" class="block text-gray-400 hover:text-red-400 transition-colors">Projects</a>
+                        <a href="#contact" class="block text-gray-400 hover:text-red-400 transition-colors">Contact</a>
+                    </div>
+                </div>
+                
+                <!-- Right Column - Contact Info -->
+                <div class="space-y-4">
+                    <!-- Section Title -->
+                    <h4 class="text-white font-semibold text-lg">Get In Touch</h4>
+                    
+                    <!-- Contact Information -->
+                    <div class="space-y-2 text-gray-400">
+                        <p>Sri Lanka</p>
+                        <p>shafishahin786@proton.me</p>
+                        <p>Available for collaborations</p>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <!-- Bottom Footer Section -->
+            <div class="border-t border-slate-800 mt-12 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                    
+                    <!-- Copyright Section -->
+                    <p class="text-gray-400 text-center md:text-left">
+                        © 2024 Mohamed Shahin. Built with passion and dedication.
+                    </p>
+                    
+                    <!-- Made With Love Section -->
+                    <div class="flex items-center space-x-2 text-gray-400">
+                        <span>Made with</span>
+                        <i data-lucide="heart" class="h-4 w-4 text-red-500 animate-pulse"></i>
+                        <span>by Zig Zag</span>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script src="assets/js/script.js"></script>
+</body>
+</html> 

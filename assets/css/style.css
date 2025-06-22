@@ -1,0 +1,48 @@
+/* Minimal CSS - Only essentials that Tailwind can't handle */
+html, body {
+    overflow-x: hidden;
+    background-color: #0f172a; /* slate-900 dark background */
+}
+
+/* Text Gradient for name */
+.text-gradient {
+    background: linear-gradient(135deg, #ef4444, #f97316);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Backdrop blur utilities */
+.backdrop-blur-md {
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+}
+
+.backdrop-blur-custom {
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+}
+
+/* Skill progress bars with specific widths */
+.skill-progress-85 { width: 85%; }
+.skill-progress-75 { width: 75%; }
+.skill-progress-70 { width: 70%; }
+.skill-progress-80 { width: 80%; }
+.skill-progress-65 { width: 65%; }
+.skill-progress-90 { width: 90%; }
+.skill-progress-88 { width: 88%; }
+.skill-progress-82 { width: 82%; }
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1e293b;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ef4444;
+    border-radius: 4px;
+}
