@@ -91,17 +91,26 @@ document.addEventListener('DOMContentLoaded', function() {
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('.nav-link, .nav-link-mobile');
         const scrollPosition = window.scrollY + header.offsetHeight + 100;
+        const documentHeight = document.documentElement.scrollHeight;
+        const windowHeight = window.innerHeight;
         
         let currentSection = '';
         
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            
-            if (scrollPosition >= sectionTop && scrollPosition <= sectionTop + sectionHeight) {
-                currentSection = section.getAttribute('id');
-            }
-        });
+        // Check if we're at the bottom of the page (footer area)
+        if (window.scrollY + windowHeight >= documentHeight - 50) {
+            // If we're at the bottom, highlight the contact section
+            currentSection = 'contact';
+        } else {
+            // Normal section detection
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                
+                if (scrollPosition >= sectionTop && scrollPosition <= sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+        }
         
         // Remove active class from all links
         navLinks.forEach(link => {
